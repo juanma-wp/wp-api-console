@@ -19,22 +19,24 @@ if ( wpcomConfig ) {
 		clientId: wpcomConfig.clientID || wpcomConfig.clientId || wpcomConfig.client_id,
 		scope: 'global',
 	};
-	const authProvider = config[ 'wordpress.com' ].auth === 'proxy'
-		? proxy
-		: createOauth2Provider(
-				oauth2Config.id,
-				oauth2Config.baseUrl,
-				oauth2Config.userUrl,
-				oauth2Config.redirectUrl,
-				oauth2Config.clientId,
-				oauth2Config.scope
-			);
+	const authProvider =
+		config[ 'wordpress.com' ].auth === 'proxy'
+			? proxy
+			: createOauth2Provider(
+					oauth2Config.id,
+					oauth2Config.baseUrl,
+					oauth2Config.userUrl,
+					oauth2Config.redirectUrl,
+					oauth2Config.clientId,
+					oauth2Config.scope
+			  );
 
-	const hasOrgWebsites = !! config[ 'wordpress.org' ] && !! Object.keys( config[ 'wordpress.org' ] ).length;
+	const hasOrgWebsites =
+		!! config[ 'wordpress.org' ] && !! Object.keys( config[ 'wordpress.org' ] ).length;
 	const dotComWPApi = {
 		name: hasOrgWebsites ? 'WP.COM WP REST API' : 'WP REST API',
 		baseUrl: 'https://public-api.wordpress.com/',
-		namespaces: [ 'wp/v2', 'wpcom/v2', 'wpcom/v3', 'wpcom/v4' ],
+		namespaces: [ 'wp/v2', 'wpcom/v2', 'wpcom/v3' ],
 	};
 
 	APIs = APIs.concat( [
@@ -46,18 +48,20 @@ if ( wpcomConfig ) {
 // Loading WP.org APIs
 if ( config[ 'wordpress.org' ] ) {
 	APIs = APIs.concat(
-		config[ 'wordpress.org' ].map( site => {
+		config[ 'wordpress.org' ].map( ( site ) => {
 			let authProvider;
 			const { name, authType } = site;
 			const url = site.url.replace( /\/+$/, '' );
 			if ( authType === 'basic' ) {
 				authProvider = createBasicAuthProvider( name, url, site.authHeader );
-			} else { // OAuth1
+			} else {
+				// OAuth1
 				authProvider = createOauth1Provider(
-					name, url,
+					name,
+					url,
 					site.callbackUrl,
 					site.publicKey || site.clientKey,
-					site.secretKey,
+					site.secretKey
 				);
 			}
 			return createCoreApi( authProvider, name, `${ url }/wp-json/` );
@@ -65,6 +69,6 @@ if ( config[ 'wordpress.org' ] ) {
 	);
 }
 
-export const apis = APIs.map( api => api.name );
+export const apis = APIs.map( ( api ) => api.name );
 export const getDefault = () => APIs[ 0 ];
-export const get = name => APIs.find( api => api.name === name ) || getDefault();
+export const get = ( name ) => APIs.find( ( api ) => api.name === name ) || getDefault();
