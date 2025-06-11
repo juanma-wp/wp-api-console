@@ -34,7 +34,7 @@ if ( wpcomConfig ) {
 	const dotComWPApi = {
 		name: hasOrgWebsites ? 'WP.COM WP REST API' : 'WP REST API',
 		baseUrl: 'https://public-api.wordpress.com/',
-		namespaces: [ 'wp/v2', 'wpcom/v2', 'wpcom/v3', 'wpcom/v4' ],
+		namespaces: [ 'wp/v2', 'wpcom/v2', 'wpcom/v3' ],
 	};
 
 	APIs = APIs.concat( [
