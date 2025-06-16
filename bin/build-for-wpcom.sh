@@ -28,8 +28,8 @@ echo "js  : $JS_FILENAME"
 sed \
 	-e "s/{CSS_FILENAME}/$CSS_FILENAME/g" \
 	-e "s/{JS_FILENAME}/$JS_FILENAME/g" \
-	theme/console3.php \
-	> build-theme/console3.php \
+	theme/page-api-console.php \
+	> build-theme/page-api-console.php \
 	|| exit 1
 
 echo
