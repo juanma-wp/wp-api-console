@@ -18,12 +18,12 @@ declare(strict_types=1);
 <head>
     <meta http-equiv="content-type" content="<?php bloginfo('html_type'); ?>" charset="<?php bloginfo('charset'); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="//s0.wp.com/wp-content/themes/a8c/wpcomdev3/console3/static/{CSS_FILENAME}">
+    <link rel="stylesheet" href="//s0.wp.com/wp-content/themes/a8c/wpcom-developer/build-dist/console3/static/{CSS_FILENAME}">
 </head>
 
 <body <?php body_class(); ?>>
     <div id="root"></div>
-    <script src="//s0.wp.com/wp-content/themes/a8c/wpcomdev3/console3/static/{JS_FILENAME}" defer></script>
+    <script src="//s0.wp.com/wp-content/themes/a8c/wpcom-developer/build-dist/console3/static/{JS_FILENAME}" defer></script>
 </body>
 
 </html>
